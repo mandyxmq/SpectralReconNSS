@@ -1,0 +1,124 @@
+<scene version="2.1.0">
+
+<default name="spp" value="16"/>
+<default name="resx" value="750"/>
+<default name="resy" value="422"/>
+
+<!-- Camera and Rendering Parameters -->
+
+	<!-- <integrator type="direct"/> -->
+	<integrator type="path">
+		<integer name="max_depth" value="10"/>
+	</integrator>
+	<sensor type="perspective" id="elm__2" name="elm__2">
+		<string name="fov_axis" value="x"/>
+		<float name="fov" value="57.36"/>
+		<float name="near_clip" value="0.100000"/>
+		<float name="far_clip" value="10000.000000"/>
+		<transform name="to_world">
+			<lookat origin="71, -4, 21.75" target="0, -1, 21.1" up="0, 0, 1"/>
+		</transform>
+		<sampler type="independent" name="sampler">
+			<integer name="sample_count" value="$spp"/>
+		</sampler>
+		<film type="hdrfilm" name="film">
+			<integer name="width" value="$resx"/>
+			<integer name="height" value="$resy"/>
+		</film>
+	</sensor>
+
+<!-- Emitters -->
+
+    <shape type="sphere" id='light'>
+        <emitter type="area">
+            <spectrum name="radiance" type="irregular">
+                <string name="wavelengths" value="400, 700"/>
+                <string name="values" value="0.1, 0.2"/>
+            </spectrum>
+        </emitter>
+        <transform name="to_world">
+            <scale value="0.325"/>       
+            <translate x="41.7" y="16" z="31.7"/>
+        </transform>        
+    </shape>
+
+<!-- Shapes -->
+
+    <bsdf type="smoothBsplineDiffuse" id="white">
+        <rgb name="reflectance" value="0.885809, 0.698859, 0.666422"/>
+    </bsdf>
+
+    <bsdf type="smoothBsplineDiffuse" id="green">
+        <rgb name="reflectance" value="0.105421, 0.37798, 0.076425"/>
+    </bsdf>
+
+    <bsdf type="smoothBsplineDiffuse" id="red">
+        <rgb name="reflectance" value="0.570068, 0.0430135, 0.0443706"/>
+    </bsdf>
+
+    <bsdf type="smoothBsplineDiffuse" id="cubecolor">
+        <rgb name="reflectance" value="0.570068, 0.0430135, 0.0443706"/>
+    </bsdf>
+
+
+    <!-- back wall -->
+    <shape type="rectangle">
+        <ref id="white"/>
+        <transform name="to_world">
+            <rotate y="1" angle="90"/>
+            <scale value="20.3"/>  
+            <translate x="-40.3" y="0" z="20"/>      
+        </transform>
+    </shape>
+
+    <!-- left wall -->
+    <shape type="rectangle">
+        <ref id="green"/>
+        <transform name="to_world">
+            <rotate x="1" angle="-90"/>
+            <scale value="20.3"/>  
+            <translate x="-20" y="-20.3" z="20"/>      
+        </transform>
+    </shape>
+
+    <!-- right wall -->
+    <shape type="rectangle">
+        <ref id="red"/>
+        <transform name="to_world">
+            <rotate x="1" angle="90"/>
+            <scale value="20.3"/>  
+            <translate x="-20" y="20.3" z="20"/>      
+        </transform>
+    </shape>
+
+    <!-- ceiling -->
+    <shape type="rectangle">
+        <ref id="white"/>
+        <transform name="to_world">
+            <rotate x="1" angle="180"/>
+            <scale value="20.3"/>  
+            <translate x="-20" y="0" z="40.3"/>      
+        </transform>
+    </shape>
+
+    <!-- floor -->
+    <shape type="rectangle">
+        <ref id="white"/>
+        <transform name="to_world">
+            <scale value="20.3"/>  
+            <translate x="-20" y="0" z="-0.3"/>      
+        </transform>
+    </shape>
+
+    <!-- cube -->
+    <shape type="cube">
+        <ref id="cubecolor"/>
+        <transform name="to_world">    
+            <rotate z="1" angle="-62.22037927497831"/>
+            <scale value="6.3"/>
+            <translate x="-28.4" y="-4.6" z="6.0"/>    
+        </transform>
+    </shape>
+
+
+</scene>
