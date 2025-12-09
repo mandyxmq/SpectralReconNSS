@@ -23,6 +23,8 @@ The `scenes` directory contains the Mitsuba 3 scene files for rendering these ph
 
 The `brdf` directory contains spectral BRDF implementations, using either a discrete set of values (`spectralDiffuse.py`) and a B-spline representation (`SmoothBsplineDiffuse.py`). 
 
+The `NSS` folder contains the core null-space sampling code.
+
 The `mitsuba` folder contains the modifed `spectrum.h` and `spectrum.cpp` files for the physical experiments. In this work, we set the wavelength range to 400–700 nm and fitted sensitivity functions using the Macbeth chart. Please update these two files in Mitsuba 3, recompile, and set your Mitsuba path in `bspline.py` and `SpectralDiffuse.py`.
 
 ## Contact
